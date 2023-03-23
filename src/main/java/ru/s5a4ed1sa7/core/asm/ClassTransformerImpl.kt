@@ -67,6 +67,8 @@ class ClassTransformerImpl : IClassTransformer {
         registerSpecialTransformer(ServerConfigurationManagerTransformer(), "net.minecraft.server.management.ServerConfigurationManager")
         //TODO - Increase gui frame-time to 60
         registerSpecialTransformer(MinecraftTransformer(), "net.minecraft.client.Minecraft")
+
+        registerSpecialTransformer(EntityCreatureTransformer(), "net.minecraft.entity.EntityCreature")
     }
 
     private val globalTransformers: MutableList<ASMClassTransformer> = mutableListOf()
