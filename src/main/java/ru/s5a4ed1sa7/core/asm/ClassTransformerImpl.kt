@@ -63,6 +63,8 @@ class ClassTransformerImpl : IClassTransformer {
         registerSpecialTransformer(EntityTrackerTransformer(), "net.minecraft.entity.EntityTracker")
         //TODO - Honest xp consuming
         registerSpecialTransformer(EntityPlayerTransformer(), "net.minecraft.entity.player.EntityPlayer")
+        //TODO - ...
+        registerSpecialTransformer(ServerConfigurationManagerTransformer(), "net.minecraft.server.management.ServerConfigurationManager")
     }
 
     private val globalTransformers: MutableList<ASMClassTransformer> = mutableListOf()
