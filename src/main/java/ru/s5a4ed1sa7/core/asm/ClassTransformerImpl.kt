@@ -8,6 +8,7 @@ import org.objectweb.asm.ClassReader
 import org.objectweb.asm.ClassWriter
 import org.objectweb.asm.util.TraceClassVisitor
 import ru.s5a4ed1sa7.commonality.transformer.ForgeVersionTransformer
+import ru.s5a4ed1sa7.commonality.transformer.ItemStackTransformer
 import ru.s5a4ed1sa7.commonality.transformer.JarDiscoverTransformer
 import ru.s5a4ed1sa7.commonality.transformer.RandomInitializerTransformer
 import ru.s5a4ed1sa7.core.asm.api.ASMClassTransformer
@@ -59,6 +60,8 @@ class ClassTransformerImpl : IClassTransformer {
         registerSpecialTransformer(ForgeVersionTransformer(), "net.minecraftforge.common.ForgeVersion")
         //TODO - Optimized random
         registerGlobalTransformer(RandomInitializerTransformer())
+
+        registerSpecialTransformer(ItemStackTransformer(), "net.minecraft.item.ItemStack")
     }
 
     private val globalTransformers: MutableList<ASMClassTransformer> = mutableListOf()
