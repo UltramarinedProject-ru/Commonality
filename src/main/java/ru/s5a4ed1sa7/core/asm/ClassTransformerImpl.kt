@@ -6,6 +6,7 @@ import net.minecraft.launchwrapper.Launch
 import org.objectweb.asm.ClassReader
 import org.objectweb.asm.ClassWriter
 import org.objectweb.asm.util.TraceClassVisitor
+import ru.s5a4ed1sa7.commonality.transformer.JarDiscoverTransformer
 import ru.s5a4ed1sa7.core.asm.api.ASMClassTransformer
 import ru.s5a4ed1sa7.core.asm.api.ComputeFramesClassWriter
 import ru.s5a4ed1sa7.core.asm.api.SpecialClassNode
@@ -50,7 +51,7 @@ class ClassTransformerImpl : IClassTransformer {
 
     @Suppress("UNUSED")
     constructor() {
-
+        registerSpecialTransformer(JarDiscoverTransformer(), "cpw.mods.fml.common.discovery.JarDiscoverer")
     }
 
     private val globalTransformers: MutableList<ASMClassTransformer> = mutableListOf()
