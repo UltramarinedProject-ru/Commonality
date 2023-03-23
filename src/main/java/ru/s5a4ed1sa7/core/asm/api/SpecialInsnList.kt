@@ -12,7 +12,7 @@ class SpecialInsnList : InsnList(), Opcodes {
         return this
     }
 
-    fun `var`(opcode: Int, `var`: Int): SpecialInsnList {
+    private fun `var`(opcode: Int, `var`: Int): SpecialInsnList {
         return addNode(VarInsnNode(opcode, `var`))
     }
 
