@@ -21,6 +21,6 @@ class ItemStackTransformer : ASMClassTransformer {
             writeToNBT.instructions.insert(it, list)
             modified = true
         }
-        return if (modified) ASMClassTransformer.TransformResult.MODIFIED else ASMClassTransformer.TransformResult.NOT_MODIFIED
+        return onModified(modified)
     }
 }

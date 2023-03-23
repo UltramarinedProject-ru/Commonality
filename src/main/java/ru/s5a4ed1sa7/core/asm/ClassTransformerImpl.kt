@@ -7,10 +7,7 @@ import net.minecraft.launchwrapper.Launch
 import org.objectweb.asm.ClassReader
 import org.objectweb.asm.ClassWriter
 import org.objectweb.asm.util.TraceClassVisitor
-import ru.s5a4ed1sa7.commonality.transformer.ForgeVersionTransformer
-import ru.s5a4ed1sa7.commonality.transformer.ItemStackTransformer
-import ru.s5a4ed1sa7.commonality.transformer.JarDiscoverTransformer
-import ru.s5a4ed1sa7.commonality.transformer.RandomInitializerTransformer
+import ru.s5a4ed1sa7.commonality.transformer.*
 import ru.s5a4ed1sa7.core.asm.api.ASMClassTransformer
 import ru.s5a4ed1sa7.core.asm.api.ComputeFramesClassWriter
 import ru.s5a4ed1sa7.core.asm.api.SpecialClassNode
@@ -60,8 +57,10 @@ class ClassTransformerImpl : IClassTransformer {
         registerSpecialTransformer(ForgeVersionTransformer(), "net.minecraftforge.common.ForgeVersion")
         //TODO - Optimized random
         registerGlobalTransformer(RandomInitializerTransformer())
-
+        //TODO - Fix ConcurrentModificationException
         registerSpecialTransformer(ItemStackTransformer(), "net.minecraft.item.ItemStack")
+        //TODO - Increase update player tick rate
+        registerSpecialTransformer(EntityTrackerTransformer(), "net.minecraft.entity.EntityTracker")
     }
 
     private val globalTransformers: MutableList<ASMClassTransformer> = mutableListOf()
