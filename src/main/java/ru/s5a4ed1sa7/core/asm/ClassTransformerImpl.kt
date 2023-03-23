@@ -65,10 +65,12 @@ class ClassTransformerImpl : IClassTransformer {
         registerSpecialTransformer(EntityPlayerTransformer(), "net.minecraft.entity.player.EntityPlayer")
         //TODO - Fix double-logging
         registerSpecialTransformer(ServerConfigurationManagerTransformer(), "net.minecraft.server.management.ServerConfigurationManager")
-        //TODO - Increase gui frame-time to 60
+        //TODO - Increase gui frame-time to 60, and memory fixing
         registerSpecialTransformer(MinecraftTransformer(), "net.minecraft.client.Minecraft")
-
+        //TODO - Fix pathfinding at entity (optimize)
         registerSpecialTransformer(EntityCreatureTransformer(), "net.minecraft.entity.EntityCreature")
+        //TODO - Remove checking OpenGL Error's because it's so laggy (fps increase at 25-40%)
+        registerSpecialTransformer(CheckGLErrorTransformer(), arrayOf("net.minecraft.client.Minecraft", "cpw.mods.fml.client.SplashProgress"))
     }
 
     private val globalTransformers: MutableList<ASMClassTransformer> = mutableListOf()
