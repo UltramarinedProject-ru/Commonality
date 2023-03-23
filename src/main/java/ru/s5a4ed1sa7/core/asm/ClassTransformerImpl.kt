@@ -1,5 +1,6 @@
 package ru.s5a4ed1sa7.core.asm
 
+import cpw.mods.fml.common.FMLCommonHandler
 import jdk.internal.org.objectweb.asm.Opcodes
 import net.minecraft.launchwrapper.IClassTransformer
 import net.minecraft.launchwrapper.Launch
@@ -8,6 +9,7 @@ import org.objectweb.asm.ClassWriter
 import org.objectweb.asm.util.TraceClassVisitor
 import ru.s5a4ed1sa7.commonality.transformer.ForgeVersionTransformer
 import ru.s5a4ed1sa7.commonality.transformer.JarDiscoverTransformer
+import ru.s5a4ed1sa7.commonality.transformer.RandomInitializerTransformer
 import ru.s5a4ed1sa7.core.asm.api.ASMClassTransformer
 import ru.s5a4ed1sa7.core.asm.api.ComputeFramesClassWriter
 import ru.s5a4ed1sa7.core.asm.api.SpecialClassNode
@@ -55,7 +57,8 @@ class ClassTransformerImpl : IClassTransformer {
         //TODO - Startup error's fix
         registerSpecialTransformer(JarDiscoverTransformer(), "cpw.mods.fml.common.discovery.JarDiscoverer")
         registerSpecialTransformer(ForgeVersionTransformer(), "net.minecraftforge.common.ForgeVersion")
-        //end
+        //TODO - Optimized random
+        registerGlobalTransformer(RandomInitializerTransformer())
     }
 
     private val globalTransformers: MutableList<ASMClassTransformer> = mutableListOf()
