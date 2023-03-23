@@ -61,6 +61,8 @@ class ClassTransformerImpl : IClassTransformer {
         registerSpecialTransformer(ItemStackTransformer(), "net.minecraft.item.ItemStack")
         //TODO - Increase update player tick rate
         registerSpecialTransformer(EntityTrackerTransformer(), "net.minecraft.entity.EntityTracker")
+        //TODO - Honest xp consuming
+        registerSpecialTransformer(EntityPlayerTransformer(), "net.minecraft.entity.player.EntityPlayer")
     }
 
     private val globalTransformers: MutableList<ASMClassTransformer> = mutableListOf()
