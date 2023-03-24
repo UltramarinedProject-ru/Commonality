@@ -32,6 +32,10 @@ minecraft {
 dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    implementation 'it.unimi.dsi:fastutil:8.5.12'
+    implementation ('it.unimi.dsi:dsiutils:2.7.3') {
+        exclude group: 'com.google.guava'
+    }
 }
 
 jar {

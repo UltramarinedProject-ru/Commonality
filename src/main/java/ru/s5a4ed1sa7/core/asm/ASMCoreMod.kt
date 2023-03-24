@@ -5,7 +5,7 @@ import cpw.mods.fml.relauncher.IFMLLoadingPlugin.*
 
 @SortingIndex(1001)
 @MCVersion("1.7.10")
-@TransformerExclusions("ru.s5a4ed1sa7.core.asm", "kotlin", "ru.s5a4ed1sa7.commonality")
+@TransformerExclusions("ru.s5a4ed1sa7.core.asm", "kotlin", "ru.s5a4ed1sa7.commonality", "it.unimi")
 class ASMCoreMod : IFMLLoadingPlugin {
     companion object {
         var isObfEnv = false

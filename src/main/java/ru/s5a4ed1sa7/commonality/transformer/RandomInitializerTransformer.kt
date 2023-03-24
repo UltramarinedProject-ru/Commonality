@@ -22,20 +22,21 @@ class RandomInitializerTransformer : ASMClassTransformer {
             val iter = method.instructions.iterator()
             while (iter.hasNext()) {
                 val node = iter.next()
+                val netty = classNode.name == "io/netty/util/internal/ThreadLocalRandom"
                 if (node.type == AbstractInsnNode.TYPE_INSN) {
                     val typeNode = node as TypeInsnNode
                     if (typeNode.opcode == NEW && typeNode.desc == "java/util/Random") {
-                        iter.set(TypeInsnNode(NEW, "ru/s5a4ed1sa7/commonality/util/ThermiteRandom"))
+                        iter.set(TypeInsnNode(NEW, if(netty) "it/unimi/dsi/util/SplitMix64Random" else "it/unimi/dsi/util/XoRoShiRo128PlusRandom"))
                         modified = modified or true
                     }
                 } else if (node.type == AbstractInsnNode.METHOD_INSN) {
                     val methodNode = node as MethodInsnNode
                     if (methodNode.owner == "java/util/Random" && methodNode.name == "<init>" && (methodNode.desc == "()V" || methodNode.desc == "(J)V")) {
-                        iter.set(MethodInsnNode(INVOKESPECIAL, "ru/s5a4ed1sa7/commonality/util/ThermiteRandom", methodNode.name, methodNode.desc, false))
+                        iter.set(MethodInsnNode(INVOKESPECIAL, if(netty) "it/unimi/dsi/util/SplitMix64Random" else "it/unimi/dsi/util/XoRoShiRo128PlusRandom", methodNode.name, methodNode.desc, false))
                         modified = modified or true
                     }
                 } else if (classNode.superName == "java/util/Random") {
-                    classNode.superName = "ru/s5a4ed1sa7/commonality/util/ThermiteRandom"
+                    classNode.superName = if(netty) "it/unimi/dsi/util/SplitMix64Random" else "it/unimi/dsi/util/XoRoShiRo128PlusRandom"
                 }
             }
         }
