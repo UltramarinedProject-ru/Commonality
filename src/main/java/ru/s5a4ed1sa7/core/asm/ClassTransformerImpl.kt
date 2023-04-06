@@ -1,11 +1,10 @@
 package ru.s5a4ed1sa7.core.asm
 
-import cpw.mods.fml.common.FMLCommonHandler
-import jdk.internal.org.objectweb.asm.Opcodes
 import net.minecraft.launchwrapper.IClassTransformer
 import net.minecraft.launchwrapper.Launch
 import org.objectweb.asm.ClassReader
 import org.objectweb.asm.ClassWriter
+import org.objectweb.asm.Opcodes
 import org.objectweb.asm.util.TraceClassVisitor
 import ru.s5a4ed1sa7.commonality.transformer.*
 import ru.s5a4ed1sa7.core.asm.api.ASMClassTransformer
@@ -55,7 +54,8 @@ class ClassTransformerImpl : IClassTransformer {
         //TODO - Startup error's fix
         registerSpecialTransformer(JarDiscoverTransformer(), "cpw.mods.fml.common.discovery.JarDiscoverer")
         registerSpecialTransformer(ForgeVersionTransformer(), "net.minecraftforge.common.ForgeVersion")
-        //TODO - Optimized random
+        registerSpecialTransformer(EventSubscriptionTransformer(), "cpw.mods.fml.common.asm.transformers.EventSubscriptionTransformer")
+        //TODO - Optimized random (faster generation, ticking, increase performance )
         registerGlobalTransformer(RandomInitializerTransformer())
         //TODO - Fix ConcurrentModificationException
         registerSpecialTransformer(ItemStackTransformer(), "net.minecraft.item.ItemStack")

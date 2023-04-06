@@ -17,3 +17,4 @@ push.sh
 buildSrc/.gradle
 buildSrc/build
 /run/
+/out/
