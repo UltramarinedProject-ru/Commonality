@@ -22,7 +22,7 @@ import java.nio.file.StandardOpenOption
 class ClassTransformerImpl : IClassTransformer {
     companion object {
         @JvmField
-        val IS_DEV = Launch.blackboard["fml.deobfuscatedEnvironment"] as Boolean
+        val IS_DEV = Launch.blackboard["fml.deobfuscatedEnvironment"] as? Boolean ?: true
 
         private const val dumpASM = true
         private const val dumpClass = true
